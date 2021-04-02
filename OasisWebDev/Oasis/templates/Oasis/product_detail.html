@@ -1,0 +1,39 @@
+{% block content %}
+
+<form method="POST">
+{% csrf_token %}
+<input type="text" name="name">
+
+<button type="submit">Search Product</button>
+</form>
+
+
+<h1>Product Detail </h1>
+{% if product == None %}
+<p>This item does not exist </p>
+{% else %}
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Productsss</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>{{product.SKU}}</th>
+							<br>
+							<th>{{product.name}}</th>
+							<br>
+							<th>{{product.QTY}}</th>
+							<br>
+							<th>{{product.price}}</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+		</div>
+{% endif %}
+
+{% endblock content %}

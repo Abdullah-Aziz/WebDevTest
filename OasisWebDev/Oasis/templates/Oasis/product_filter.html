@@ -1,0 +1,20 @@
+
+{% block content %}
+<h1>Product Detail </h1>
+  <form action="" method="get">
+    {{ product.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+{% if not product.qs %}
+<p>This item does not exist </p>
+{% else %}
+<p>This item does exist </p>
+<th>{{product.qs.first.SKU}}</th>
+<br>
+<th>{{product.qs.first.name}}</th>
+<br>
+<th>{{product.qs.first.QTY}}</th>
+<br>
+<th>{{product.qs.first.price}}</th>
+{% endif %}
+{% endblock %}
