@@ -44,13 +44,6 @@ def product_retrieve(request):
 def product_update(request):
     products = Products.objects.all()
     product = UserFilter(request.GET, queryset=products)
-    # if product.qs:
-    #     form = UpdateForm(request.POST, instance=product.qs[0])
-    # else:
-    #     form = UpdateForm()
-    # if form.is_valid():
-    #     form.save()
-
     form = UpdateForm(instance=product.qs.first())
 
     if request.method == 'POST':
@@ -86,30 +79,3 @@ def product_sold(request):
             sold.append(product)
 
     return render(request, 'Oasis/ProductsRemainSold.html', {'products': sold})
-#
-#
-# def customer(request, pk_test):
-#     customer = Customer.objects.get(id=pk_test)
-#
-#     orders = customer.order_set.all()
-#     order_count = orders.count()
-#
-#     myFilter = OrderFilter(request.GET, queryset=orders)
-#     orders = myFilter.qs
-#
-#     context = {'customer': customer, 'orders': orders, 'order_count': order_count,
-#                'myFilter': myFilter}
-#     return render(request, 'accounts/customer.html', context)
-#
-# def updateOrder(request, pk):
-#     order = Order.objects.get(id=pk)
-#     form = OrderForm(instance=order)
-#
-#     if request.method == 'POST':
-#         form = OrderForm(request.POST, instance=order)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#
-#     context = {'form': form}
-#     return render(request, 'accounts/order_form.html', context)
